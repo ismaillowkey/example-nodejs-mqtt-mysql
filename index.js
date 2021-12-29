@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const mqtt = require('mqtt')
 const client  = mqtt.connect('mqtt://ismaillowkey.my.id:1883')
 
