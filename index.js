@@ -30,7 +30,7 @@ conn.connect((err) =>{
  
 //tampilkan semua data 
 app.get('/api/haiwell',(req, res) => {
-  let sql = "SELECT * FROM haiwelll";
+  let sql = "SELECT * FROM haiwell";
   conn.query(sql, (err, results) => {
     // jika error
     if(err) {
@@ -55,10 +55,12 @@ app.get('/api/haiwell',(req, res) => {
     }
   });
 });
- 
-//tampilkan data berdasarkan id
-app.get('/api/haiwell/:id',(req, res) => {
-  let sql = "SELECT * FROM haiwell WHERE id="+ req.params.id;
+
+
+//tampilkan data berdasarkan date
+app.get('/api/haiwell',(req, res) => {
+  let sql = `SELECT * FROM haiwell WHERE DATE(date) = '${req.query.date}'`;
+  console.log(sql);
   conn.query(sql, (err, results) => {
     // jika error
     if(err) {
@@ -84,6 +86,35 @@ app.get('/api/haiwell/:id',(req, res) => {
   });
 });
  
+//tampilkan data berdasarkan date
+app.get('/api/haiwell/range',(req, res) => {
+  let sql = `SELECT * FROM haiwell WHERE DATE(date) BETWEEN '${req.query.startdate}' AND '${req.query.enddate}'`;
+  console.log(sql);
+  conn.query(sql, (err, results) => {
+    // jika error
+    if(err) {
+      res.status(400)
+      res.json({
+        status: 400,
+        success: false,
+        message: 'error when get data from database',
+        error: err,
+        data: null
+      })
+    }
+    // jika tidak error
+    else {
+      res.json({
+        status: 200, 
+        success: true, 
+        message: '',
+        error: null, 
+        data: results
+      });
+    }
+  });
+});
+
 //Tambahkan data product baru
 app.post('/api/haiwell',(req, res) => {
   let data = { 
