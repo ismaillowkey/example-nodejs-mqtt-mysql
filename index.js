@@ -115,7 +115,8 @@ app.get('/api/haiwell/range',(req, res) => {
   });
 });
 
-//Tambahkan data product baru
+/* tidak dipakai dulu
+//Tambahkan data baru
 app.post('/api/haiwell',(req, res) => {
   let data = { 
     date: req.body.date, 
@@ -148,7 +149,9 @@ app.post('/api/haiwell',(req, res) => {
     }
   });
 });
- 
+*/ 
+
+/* tidak dipakai dulu
 //Edit data haiwell berdasarkan id
 app.put('/api/haiwell/:id',(req, res) => {
   let sql = `UPDATE haiwell SET date= '${req.body.date}', 
@@ -180,7 +183,9 @@ app.put('/api/haiwell/:id',(req, res) => {
     }
   });
 });
- 
+*/ 
+
+/* tidak dipakai dulu
 //Delete data product berdasarkan id
 app.delete('/api/haiwell/:id',(req, res) => {
   let sql = `DELETE FROM haiwell WHERE id='${req.params.id}'`;
@@ -207,6 +212,7 @@ app.delete('/api/haiwell/:id',(req, res) => {
     }
   });
 });
+*/
  
 client.on('message', function (topic, message) {
   // get topic
